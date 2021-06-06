@@ -1,0 +1,508 @@
+ /// <summary>
+        /// Ranking nodes by their support for competitors in a network, in which competitor's states are normally indicated by the fixed state in {-1, 1}
+        /// see paper "Competitive Dynamics on Complex Networks" (http://www.nature.com/srep/2014/140728/srep05858/full/srep05858.html)
+        /// </summary>
+        /// <param name="competitors">The competitor nodes whose state is set at a given values {-1, 1} in advance</param>
+        /// <returns>
+        /// 1- the return of function: The number of supporters the winner are higher than the loser (excluse the competitors); 
+        /// the sign shows which competitor wins
+        /// 2- the node's state in the network: Show the bias of normal agents</returns>
+        public Dictionary<BooleanNode, List<BooleanNode>> Competition_Computing(IEnumerable<BooleanNode> competitors)
+        {
+            if (competitors == null || (competitors != null && competitors.Count() == 0))
+            {
+                User.One.SendErrorToUser(new Exception("The list of competitors in the network is null!"));
+                return null;
+            }
+            IEnumerable<BooleanNode> normalAgents = Netutil.SubstractNodeListByID(this.Nodes, competitors);
+
+            int nCount = 0;
+            int nLoop = 0;
+            IEnumerable<float>[] e = For.Spin_FLogic(Competition_InitState(normalAgents));
+            float[] buffer = new float[e.Length];
+            float[] sumAttractor = new float[e.Length];
+            float E = 1.0f / this.MaxInDegMixing;
+            IEnumerable<float[]> combinations = Enumerate<float>.Combination(buffer, e);
+
+            //var options = new ParallelOptions { MaxDegreeOfParallelism = Environment.ProcessorCount };
+            //Parallel.ForEach(combinations, options,
+            //    (netState, s, x) =>
+            //    {
+            //        if (++nLoop > iMaxRobustnessLoop) { nLoop--; s.Stop(); }
+            //        Netutil.SetNodeState(normalAgents, netState);
+
+
+            //        List<float[]> att1 = Competition_FindNetworkAttractor(E, normalAgents);
+            //        foreach (var state in att1)
+            //        {
+            //            for (int i = 0; i < state.Length; i++)
+            //            {
+            //                sumAttractor[i] += state[i];
+            //            }
+            //            nCount++;
+            //        }
+            //    });
+
+            foreach (float[] netState in combinations)
+            {
+                if (++nLoop > iMaxRobustnessLoop) { nLoop--; break; }
+
+
+                Netutil.SetNodeState(normalAgents, netState);
+
+
+                List<float[]> att1 = Competition_FindNetworkAttractor(E, normalAgents);
+                foreach (var state in att1)
+                {
+                    for (int i = 0; i < state.Length; i++)
+                    {
+                        sumAttractor[i] += state[i];
+                    }
+                    nCount++;
+                }
+
+            }
+            for (int i = 0; i < sumAttractor.Length; i++)
+            {
+                sumAttractor[i] /= nCount;
+
+            }
+
+            Netutil.SetNodeState(normalAgents, sumAttractor);
+            return Competition_GetSupporters(competitors, this.Nodes);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="L1">leader 1</param>
+        /// <param name="R1">Reputation of leader 1| > 1</param>
+        /// <param name="S1">Stubborness of leader 1</param>
+        /// <param name="A1">Appeal of leader 1</param>
+        /// <param name="E1">Extremeness of leader 1</param>
+        /// <param name="L2">leader 2</param>
+        /// <param name="R2">Reputation of leader 2| > 1</param>
+        /// <param name="S2">Stubborness of leader 2</param>
+        ///  <param name="A2">Appeal of leader 2</param>
+        /// <param name="E2">Extremeness of leader 2</param>
+        /// <param name="T">The bound of confidence</param>
+        /// <returns></returns>
+        public Dictionary<BooleanNode, List<BooleanNode>> Competition_Computing(string L1, float R1, float S1, float A1, float E1,
+            string L2, float R2, float S2, float A2, float E2, float T)
+        {
+
+
+            BooleanNode leader1 = this[L1] as BooleanNode;
+            BooleanNode leader2 = this[L2] as BooleanNode;
+            IEnumerable<BooleanNode> competitors= new BooleanNode[] { leader1, leader2 };
+            IEnumerable<BooleanNode> normalAgents = Netutil.SubstractNodeListByID(this.Nodes, competitors);
+
+
+            int nCount = 0;
+            int nLoop = 0;
+            IEnumerable<float>[] e = For.Spin_FLogic(Competition_InitState(normalAgents));
+            float[] buffer = new float[e.Length];
+            float[] sumAttractor = new float[e.Length];
+            float E = 1.0f / this.MaxInDegMixing;
+
+            foreach (float[] netState in Enumerate<float>.Combination(buffer, e))
+            {
+                if (++nLoop > iMaxRobustnessLoop) { nLoop--; break; }
+
+
+                Netutil.SetNodeState(normalAgents, netState);
+
+
+                List<float[]> att1 = Competition_FindNetworkAttractor(E, normalAgents);
+                foreach (var state in att1)
+                {
+                    for (int i = 0; i < state.Length; i++)
+                    {
+                        sumAttractor[i] += state[i];
+                    }
+                    nCount++;
+                }
+
+            }
+            for (int i = 0; i < sumAttractor.Length; i++)
+            {
+                sumAttractor[i] /= nCount;
+
+            }
+
+            Netutil.SetNodeState(normalAgents, sumAttractor);
+            return Competition_GetSupporters(competitors, this.Nodes);
+        }
+        /// <summary>
+        /// Check if an attractor of the network convergent from a networkstate is chanced because of a node perturbed
+        /// </summary>
+        /// <param name="node">The node to get perturbed where node is the list of normalAgents</param>
+        /// <param name="networkState">The network state for the attractor</param>
+        /// <param name="normalAgents">The nodes whose state will converge to attractor</param>
+        /// <param name="E">Epsilon for updating function</param>
+        /// <returns>true: robust; otherwise not robust</returns>
+        protected bool Competition_IsRobustNodeWithState(BooleanNode node, float[] networkState, float E)
+        {
+
+            
+            Netutil.SetNodeState(this.Nodes, networkState);
+            //node.ResetState(1);// perturbation
+
+            List<float[]> att1 = Competition_FindNetworkAttractor(E,this.Nodes);
+
+            Netutil.SetNodeState(this.Nodes, networkState);
+
+
+            node.ResetState(-node.State);// perturbation
+
+            List<float[]> att2 = Competition_FindNetworkAttractor(E, this.Nodes);
+            
+
+            return Netutil.IsEqualAttractors(att1, att2);
+        }
+        
+        
+        
+        /// <summary>
+        /// Calculate the loyal point with a leader against the opposite signals from outside of network
+        /// </summary>
+        /// <param name="leader">The leading node</param>
+        /// <returns>The list of members and their loyal points with the leading node where 
+        /// - Loyal members: the loyal point is closer to 1
+        /// - Disloyal members: the loyal point is closer to -1
+        /// - Neutral members: the loyal point is closer to 0
+        /// </returns>
+        public Dictionary<BooleanNode,float> Competition_AdhereToLeader(BooleanNode leader)
+        {
+            Dictionary<BooleanNode, float> loyalStates = new Dictionary<BooleanNode, float>();
+            
+            
+            leader.ResetState(1); //the leader's state
+            BooleanNode againstLeader = this.NewNode("#oppositeLeader#", null) as BooleanNode;
+            againstLeader.ResetState(-1); //the state of node whose state is always inverted with that of the leader
+            IEnumerable<BooleanNode> normalAgents = Netutil.SubstractNodeListByID(this.Nodes, new BooleanNode[] { againstLeader, leader });
+
+            foreach (BooleanNode node in normalAgents)
+            {
+                //Attache a node whose state is always inverted with that of the leader (weight is the highest of 1)
+                Interaction tempInt = new Interaction(againstLeader, node, 0,"",1, Interaction.DirectionType.directed);
+
+                againstLeader.AddArc(true, tempInt);
+
+                Dictionary<BooleanNode, List<BooleanNode>> comparer = this.Competition_Computing(new BooleanNode[] { againstLeader, leader });
+                loyalStates.Add(node, node.State);
+                //this.RemoveArc(tempInt);
+
+                againstLeader.RemoveArc(tempInt);
+                node.RemoveArc(tempInt);
+            }
+            
+            return loyalStates;
+        }
+
+        public Dictionary<Node, double> Competition_AdhereToLeaderBaseOnPageRank(Node leader)
+        {
+            Dictionary<Node, double> loyalStates = new Dictionary<Node, double>();
+
+            Node againstLeader = this.NewNode("#oppositeLeader#", null);
+            this.AddNode(againstLeader);
+
+            IEnumerable<Node> normalAgents = Netutil.SubstractNodeListByID(this.Nodes, new Node[] { againstLeader, leader });
+
+            foreach (Node node in normalAgents)
+            {
+                //Attache a node whose state is always inverted with that of the leader (weight is the highest of 1)
+                Interaction tempInt = new Interaction(againstLeader, node, 0, "", 1, Interaction.DirectionType.directed);
+                
+                againstLeader.AddArc(true, tempInt);
+                
+                Dictionary<Node, double> nodeStates = this.CompetitiveBaseOnPageRank(new string[] { leader.name }, new string[] { againstLeader.name });
+
+                loyalStates.Add(node, nodeStates[node]);
+
+                againstLeader.RemoveArc(tempInt);
+                node.RemoveArc(tempInt);
+            }
+
+            this.RemoveNode(againstLeader);
+
+            return loyalStates;
+        }
+
+        public Dictionary<Node, double> CompetitiveBaseOnPageRank(IEnumerable<string> leaderNames, IEnumerable<string> againstLeaderNames)
+        {
+            const int maxIterations = 200;
+            const double tolerance = 2 * double.Epsilon;
+            double E = 1.0f / this.MaxOutDegMixing;
+
+            Dictionary<Node, double> Ranking = new Dictionary<Node, double>();
+            Dictionary<Node, double> tempRanking = new Dictionary<Node, double>();
+
+            foreach (Node n in this.Nodes)
+            {
+                int initValue = 0;
+                Ranking.Add(n, initValue);
+            }
+
+            foreach (string leaderName in leaderNames)
+            {
+                Node leader = this[leaderName];
+                Ranking[leader] = tempRanking[leader] = 1;
+            }
+
+            foreach (string againstLeaderName in againstLeaderNames)
+            {
+                Node againstLeader = this[againstLeaderName];
+                Ranking[againstLeader] = tempRanking[againstLeader] = -1;
+            }
+
+            double error = 0;
+            int iter = 0;
+            do
+            {
+                error = 0;
+                
+                foreach (KeyValuePair<Node, double> de in Ranking)
+                {
+                    Node v = de.Key;
+                    double rank = de.Value;
+
+                    if (leaderNames.FirstOrDefault(name => name.Equals(v.name)) != null || againstLeaderNames.FirstOrDefault(name => name.Equals(v.name)) != null) continue;
+
+                    double r = 0;
+                    IEnumerable<Interaction> vInteraction = v.InUnLink;
+
+                    // voi moi canh dau vao
+                    foreach (Interaction e in vInteraction)
+                    {
+                        // not dau vao
+                        Node neibourNode = e.GetPartnerVertex(v);
+
+                        //User.One.MessageToUser(neibourNode.name);
+                        if (!Ranking.ContainsKey(neibourNode)) continue;
+
+                        //r += (double)(e.weight / neibourNode.TotalWeight) * (Ranking[neibourNode] - rank); // trang thai cu cua not dau vao tru trang thai cua not hien thoi nhan voi trong so
+                        r += (Ranking[neibourNode] - rank); // trang thai cu cua not dau vao tru trang thai cua not hien thoi nhan voi trong so
+                    }
+
+                    double newRank = rank + E * r;
+
+                    tempRanking[v] = newRank;
+                    error += Math.Abs(rank - newRank);
+                }
+
+                // swap ranks
+                Dictionary<Node, double> temp = Ranking;
+                Ranking = tempRanking;
+                tempRanking = temp;
+
+                iter++;
+            } while (error > tolerance && iter < maxIterations);
+
+            return Ranking;
+        }
+
+        public Dictionary<Node, double> Competition_SumOutsideLoyalPoint()
+        {
+            Dictionary<Node, double> result = new Dictionary<Node, double>();
+            
+            foreach (Node leader in this.Nodes.ToList())
+            {
+                Dictionary<Node, double> loyalNodes = Competition_AdhereToLeaderBaseOnPageRank(leader);
+
+                double sumLoyalPoint = 0.0f;
+
+                foreach (var n in loyalNodes)
+                {
+                    sumLoyalPoint += loyalNodes[n.Key];
+                }
+
+                result.Add(leader, sumLoyalPoint);
+            }
+
+            return result;
+        }
+
+        public Dictionary<string, double> Competition_AverageOutsideLoyalPoint()
+        {
+            Dictionary<string, double> result = new Dictionary<string, double>();
+
+            foreach (Node leader in this.Nodes.ToList())
+            {
+                Dictionary<Node, double> loyalNodes = Competition_AdhereToLeaderBaseOnPageRank(leader);
+
+                double averageLoyalPoint = loyalNodes.Average(t => t.Value);
+
+                result.Add(leader.name, averageLoyalPoint);
+            }
+
+            return result;
+        }
+
+        public Dictionary<Node, double> Competition_AverageOutsideLoyalPointNode()
+        {
+            Dictionary<Node, double> result = new Dictionary<Node, double>();
+
+            foreach (Node leader in this.Nodes.ToList())
+            {
+                Dictionary<Node, double> loyalNodes = Competition_AdhereToLeaderBaseOnPageRank(leader);
+
+                double averageLoyalPoint = loyalNodes.Average(t => t.Value);
+
+                result.Add(leader, averageLoyalPoint);
+            }
+
+            return result;
+        }
+
+        public Dictionary<BooleanNode, Dictionary<BooleanNode, int>> Competition_Ranking()
+        { 
+            // [i,j] > 0; winer else loser
+            int[,] result = new int[this.Nodes.Count(), this.Nodes.Count()];
+            
+           
+            for(int i=0;i<Nodes.Count()-1;i++)
+                for (int j = i + 1; j < Nodes.Count(); j++)
+                { 
+                    
+                    BooleanNode PostiveCompetitor = Nodes.ElementAt(i) as BooleanNode;
+                    PostiveCompetitor.ResetState(1);
+                    BooleanNode NegagiveCompetitor = Nodes.ElementAt(j) as BooleanNode;
+                    NegagiveCompetitor.ResetState(-1);
+                    Dictionary<BooleanNode, List<BooleanNode>> supporters = Competition_Computing(new BooleanNode[]{PostiveCompetitor,NegagiveCompetitor});
+                    int mark = 0;
+                    
+                    
+                    if (supporters[PostiveCompetitor].Count() > supporters[NegagiveCompetitor].Count())
+                    {
+                        mark =supporters[PostiveCompetitor].Count() - supporters[NegagiveCompetitor].Count();
+                        result[i, j] = mark;// i is the winner
+                        result[j, i] = -mark;
+                    }
+                    else if (supporters[PostiveCompetitor].Count() < supporters[NegagiveCompetitor].Count())
+                    {
+                        mark = supporters[NegagiveCompetitor].Count() - supporters[PostiveCompetitor].Count();
+                        
+                        result[j, i] = mark; // j is the winer
+                        result[i, j] = -mark;
+                    }
+                    else
+                    {
+                        result[i, j] = result[j, i] = 0;
+                    }
+
+
+                }
+            //for (int i = 0; i < Nodes.Count(); i++)
+            //    for (int j = 0; j < Nodes.Count(); j++)
+            //    {
+            //        Debug.WriteLine(string.Format("[{0} wins {1}] at {2}", Nodes.ElementAt(i).name, Nodes.ElementAt(j).name, result[i, j]));
+            //    }
+            Dictionary<BooleanNode, Dictionary<BooleanNode, int>> cen = new Dictionary<BooleanNode, Dictionary<BooleanNode, int>>();
+            for (int i = 0; i < Nodes.Count(); i++)
+            {
+                cen[Nodes.ElementAt(i) as BooleanNode] = new Dictionary<BooleanNode,int>();
+                for (int j = 0; j < Nodes.Count(); j++)
+                {
+                    cen[Nodes.ElementAt(i) as BooleanNode][Nodes.ElementAt(j) as BooleanNode]=result[i,j] ;
+                }
+            }
+            return cen;
+        }
+        /// <summary>
+        /// Get supporters based on the state bias of nodes towards {-1, 1}
+        /// </summary>
+        /// <param name="competitors">The list of competitors whose state must be -1 or 1</param>
+        /// <param name="nodes">The normal nodes/agents for finding supporters</param>
+        /// <returns>The competiors and their supporters</returns>
+        protected Dictionary<BooleanNode, List<BooleanNode>> Competition_GetSupporters(IEnumerable<BooleanNode> competitors, IEnumerable<Node> nodes)
+        {
+            Dictionary<BooleanNode, List<BooleanNode>> supporters = new Dictionary<BooleanNode, List<BooleanNode>>();
+
+            List<BooleanNode> dumpcompetitors = new List<BooleanNode>();
+            dumpcompetitors.AddRange(competitors);
+
+            // Add neutral nodes to the list
+            BooleanNode neutralNode = this.NewNode("Neutral", null) as BooleanNode;
+            neutralNode.ResetState(0);
+            dumpcompetitors.Add(neutralNode);
+
+            //end adding the neutral node
+
+            foreach (var c in dumpcompetitors)
+            {
+                supporters.Add(c, new List<BooleanNode>());
+                foreach (var n in nodes)
+                {
+                    if (c.State == Competition_Bias((n as BooleanNode).State))
+                        supporters[c].Add(n as BooleanNode);
+                }
+            }
+
+            return supporters;
+        }
+        /// <summary>
+        /// Determine bias of a value whether it is close to which of {-1, 0, 1}
+        /// </summary>
+        /// <param name="x">the value to evaluate its bias</param>
+        /// <returns>the bias of the value</returns>
+        protected int Competition_Bias(float x)
+        {
+            if (Math.Abs(x) < Mathutil.NumericMath.zeroEpsionf)
+                return 0;
+            else if (x > 0)
+                return 1;
+            else
+                return -1;
+        }
+        
+        /// <summary>
+        /// Find attractor of a list of nodes by iteratively updating of node's states
+        /// </summary>
+        /// <param name="E">Epsilon for updating function</param>
+        /// <param name="normalAgents">The list of nodes need updating state</param>
+        /// <returns>The attractor</returns>
+        protected List<float[]> Competition_FindNetworkAttractor(float E, IEnumerable<Node> normalAgents)
+        {
+            var statesLists = new List<float[]> { Netutil.GetNodeState(normalAgents) };
+
+            do
+            {
+                float[] st = Spin_GoToNextStates(normalAgents, E);
+
+                for (int i = statesLists.Count - 1; i >= 0; i--)
+                {
+                    if (Netutil.IsEqualNetStatesParallel(st, statesLists[i]))
+                        return statesLists.GetRange(i, statesLists.Count - i); // the network state at position i is the state, in the attractor, directly converged from CurrentStates 
+                    // ( zero index in the return result)
+                }
+                statesLists.Add(st);
+
+            } while (true);
+        }
+
+        protected List<float[]> Competition_FindNetworkAttractor2(float E, IEnumerable<Node> normalAgents)
+        {
+            float[] statesLists = Netutil.GetNodeState(normalAgents);
+
+            const int maxIterations = 100;
+            float tolerance = 0.01f;
+            float error = 0;
+            int iter = 0;
+
+            do
+            {
+                error = 0;
+                float[] st = Spin_GoToNextStates(normalAgents, E);
+
+                for (int i = 0; i < statesLists.Length; i++)
+                {
+                    error += Math.Abs(statesLists[i] - st[i]);
+                }
+
+                statesLists = st;
+
+                iter++;
+            } while (error > tolerance && iter < maxIterations);
+
+            return new List<float[]> { statesLists };
+        }

@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE pathway SYSTEM "http://www.kegg.jp/kegg/xml/KGML_v0.7.1_.dtd">
+<pathway image="https://www.kegg.jp/kegg/pathway/hsa/hsa05222.png" link="https://www.kegg.jp/kegg-bin/show_pathway?hsa05222" name="4118_Small cell lung cancer" number="05222" org="hsa" title="Small cell lung cancer">
+     <entry id="55" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:51426" name="hsa:51426" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="POLK, DINB1, DINP, POLQ" type="gene" width="46" x="984" y="233"/>
+     </entry>
+     <entry id="54" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:1643" name="hsa:1643" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="DDB2, DDBB, UV-DDB2, XPE" type="gene" width="46" x="932" y="233"/>
+     </entry>
+     <entry id="53" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:578" name="hsa:578" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="BAK1, BAK, BAK-LIKE, BCL2L7, CDN1" type="gene" width="46" x="984" y="211"/>
+     </entry>
+     <entry id="52" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:581" name="hsa:581" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="BAX, BCL2L4" type="gene" width="46" x="932" y="211"/>
+     </entry>
+     <entry id="51" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:10912+hsa:1647+hsa:4616" name="hsa:10912 hsa:1647 hsa:4616" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="GADD45G, CR6, DDIT2, GADD45gamma, GRP17..." type="gene" width="46" x="984" y="189"/>
+     </entry>
+     <entry id="50" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:1026" name="hsa:1026" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="CDKN1A, CAP20, CDKN1, CIP1, MDA-6, P21, SDI1, WAF1, p21CIP1" type="gene" width="46" x="932" y="189"/>
+     </entry>
+     <entry id="49" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:7157" name="hsa:7157" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="TP53, BCC7, LFS1, P53, TRP53" type="gene" width="46" x="802" y="209"/>
+     </entry>
+     <entry id="48" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:836" name="hsa:836" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="CASP3, CPP32, CPP32B, SCA-1" type="gene" width="46" x="638" y="366"/>
+     </entry>
+     <entry id="47" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:581" name="hsa:581" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="BAX, BCL2L4" type="gene" width="46" x="373" y="337"/>
+     </entry>
+     <entry id="46" link="https://www.kegg.jp/dbget-bin/www_bget?hsa04151" name="path:hsa04151" type="map">
+          <graphics bgcolor="#FFFFFF" fgcolor="#000000" height="34" name="PI3K-Akt signaling pathway" type="map" width="102" x="497" y="663"/>
+     </entry>
+     <entry id="45" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:1030" name="hsa:1030" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="CDKN2B, CDK4I, INK4B, MTS2, P15, TP15, p15INK4b" type="gene" width="46" x="746" y="303"/>
+     </entry>
+     <entry id="44" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:6502" name="hsa:6502" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="SKP2, FBL1, FBXL1, FLB1, p45" type="gene" width="46" x="838" y="400"/>
+     </entry>
+     <entry id="43" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:5925" name="hsa:5925" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="RB1, OSRC, PPP1R130, RB, p105-Rb, pRb, pp110" type="gene" width="46" x="986" y="369"/>
+     </entry>
+     <entry id="42" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:4790+hsa:5970" name="hsa:4790 hsa:5970" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="NFKB1, CVID12, EBP-1, KBF1, NF-kB1, NF-kappa-B, NF-kappaB, NFKB-p105, NFKB-p50, NFkappaB, p105, p50..." type="gene" width="46" x="622" y="646"/>
+     </entry>
+     <entry id="41" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:1019+hsa:1021" name="hsa:1019 hsa:1021" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="CDK4, CMM3, PSK-J3..." type="gene" width="46" x="847" y="304"/>
+     </entry>
+     <entry id="40" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:1869+hsa:1870+hsa:1871" name="hsa:1869 hsa:1870 hsa:1871" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="E2F1, E2F-1, RBAP1, RBBP3, RBP3..." type="gene" width="46" x="986" y="406"/>
+     </entry>
+     <entry id="39" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:7185+hsa:7186+hsa:7187+hsa:7188+hsa:7189+hsa:9618" name="hsa:7185 hsa:7186 hsa:7187 hsa:7188 hsa:7189 hsa:9618" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="TRAF1, EBI6, MGC:10353..." type="gene" width="46" x="877" y="648"/>
+     </entry>
+     <entry id="38" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:598" name="hsa:598" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="BCL2L1, BCL-XL/S, BCL2L, BCLX, Bcl-X, PPP1R52" type="gene" width="46" x="877" y="626"/>
+     </entry>
+     <entry id="37" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:4792" name="hsa:4792" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="NFKBIA, IKBA, MAD-3, NFKBI" type="gene" width="46" x="622" y="613"/>
+     </entry>
+     <entry id="36" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:1147+hsa:3551+hsa:8517" name="hsa:1147 hsa:3551 hsa:8517" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="CHUK, IKBKA, IKK-alpha, IKK1, IKKA, NFKBIKA, TCF16..." type="gene" width="46" x="548" y="613"/>
+     </entry>
+     <entry id="35" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:5743" name="hsa:5743" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="PTGS2, COX-2, COX2, GRIPGHS, PGG/HS, PGHS-2, PHS-2, hCox-2" type="gene" width="46" x="877" y="685"/>
+     </entry>
+     <entry id="34" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:4843" name="hsa:4843" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="NOS2, HEP-NOS, INOS, NOS, NOS2A" type="gene" width="46" x="877" y="707"/>
+     </entry>
+     <entry id="33" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:595" name="hsa:595" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="CCND1, BCL1, D11S287E, PRAD1, U21B31" type="gene" width="46" x="877" y="569"/>
+     </entry>
+     <entry id="32" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:596" name="hsa:596" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="BCL2, Bcl-2, PPP1R50" type="gene" width="46" x="360" y="291"/>
+     </entry>
+     <entry id="31" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:112401+hsa:329+hsa:330+hsa:331+hsa:79444" name="hsa:112401 hsa:329 hsa:330 hsa:331 hsa:79444" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="BIRC8, ILP-2, ILP2, hILP2..." type="gene" width="46" x="877" y="604"/>
+     </entry>
+     <entry id="30" link="https://www.kegg.jp/dbget-bin/www_bget?hsa04110" name="path:hsa04110" type="map">
+          <graphics bgcolor="#FFFFFF" fgcolor="#000000" height="34" name="Cell cycle" type="map" width="102" x="1080" y="346"/>
+     </entry>
+     <entry id="29" link="https://www.kegg.jp/dbget-bin/www_bget?hsa04210" name="path:hsa04210" type="map">
+          <graphics bgcolor="#FFFFFF" fgcolor="#000000" height="34" name="Apoptosis" type="map" width="102" x="1091" y="625"/>
+     </entry>
+     <entry id="28" link="https://www.kegg.jp/dbget-bin/www_bget?hsa05222" name="path:hsa05222" type="map">
+          <graphics bgcolor="#FFFFFF" fgcolor="#000000" height="25" name="TITLE:Small cell lung cancer" type="map" width="225" x="153" y="58"/>
+     </entry>
+     <entry id="27" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:10319+hsa:1282+hsa:1284+hsa:1285+hsa:1286+hsa:1287+hsa:1288+hsa:22798+hsa:2335+hsa:284217+hsa:3908+hsa:3909+hsa:3910+hsa:3911+hsa:3912+hsa:3913+hsa:3914+hsa:3915+hsa:3918" name="hsa:10319 hsa:1282 hsa:1284 hsa:1285 hsa:1286 hsa:1287 hsa:1288 hsa:22798 hsa:2335 hsa:284217 hsa:3908 hsa:3909 hsa:3910 hsa:3911 hsa:3912 hsa:3913 hsa:3914 hsa:3915 hsa:3918" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="LAMC3, OCCM..." type="gene" width="46" x="145" y="613"/>
+     </entry>
+     <entry id="26" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:54205" name="hsa:54205" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="CYCS, CYC, HCS, THC4" type="gene" width="46" x="438" y="350"/>
+     </entry>
+     <entry id="25" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:2272" name="hsa:2272" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="FHIT, AP3Aase, FRA3B" type="gene" width="46" x="284" y="145"/>
+     </entry>
+     <entry id="24" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:5747" name="hsa:5747" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="PTK2, FADK, FAK, FAK1, FRNK, PPP1R71, p125FAK, pp125FAK" type="gene" width="46" x="295" y="613"/>
+     </entry>
+     <entry id="23" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:5290+hsa:5291+hsa:5293+hsa:5295+hsa:5296+hsa:8503" name="hsa:5290 hsa:5291 hsa:5293 hsa:5295 hsa:5296 hsa:8503" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="PIK3CA, CLOVE, CWS5, MCAP, MCM, MCMTC, PI3K, PI3K-alpha, p110-alpha..." type="gene" width="46" x="366" y="613"/>
+     </entry>
+     <entry id="22" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:5728" name="hsa:5728" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="PTEN, 10q23del, BZS, CWS1, DEC, GLM2, MHAM, MMAC1, PTEN1, PTENbeta, TEP1" type="gene" width="46" x="393" y="661"/>
+     </entry>
+     <entry id="21" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:4609" name="hsa:4609" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="MYC, MRTL, MYCC, bHLHe39, c-Myc" type="gene" width="46" x="780" y="520"/>
+     </entry>
+     <entry id="20" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:4149" name="hsa:4149" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="MAX, bHLHd4" type="gene" width="46" x="780" y="537"/>
+     </entry>
+     <entry id="19" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:317" name="hsa:317" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="APAF1, APAF-1, CED4" type="gene" width="46" x="439" y="380"/>
+     </entry>
+     <entry id="18" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:842" name="hsa:842" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="CASP9, APAF-3, APAF3, ICE-LAP6, MCH6, PPP1R56" type="gene" width="46" x="553" y="366"/>
+     </entry>
+     <entry id="17" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:1163+hsa:1164" name="hsa:1163 hsa:1164" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="CKS1B, CKS1, PNAS-16, PNAS-18, ckshs1..." type="gene" width="46" x="833" y="443"/>
+     </entry>
+     <entry id="16" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:10000+hsa:207+hsa:208" name="hsa:10000 hsa:207 hsa:208" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="AKT3, MPPH, MPPH2, PKB-GAMMA, PKBG, PRKBG, RAC-PK-gamma, RAC-gamma, STK-2..." type="gene" width="46" x="473" y="613"/>
+     </entry>
+     <entry id="15" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:5915" name="hsa:5915" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="RARB, HAP, MCOPS12, NR1B2, RARbeta1, RRB2" type="gene" width="46" x="844" y="112"/>
+     </entry>
+     <entry id="14" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:6256+hsa:6257+hsa:6258" name="hsa:6256 hsa:6257 hsa:6258" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="RXRA, NR2B1..." type="gene" width="46" x="844" y="129"/>
+     </entry>
+     <entry id="13" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:1027" name="hsa:1027" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="CDKN1B, CDKN4, KIP1, MEN1B, MEN4, P27KIP1" type="gene" width="46" x="846" y="359"/>
+     </entry>
+     <entry id="12" link="https://www.kegg.jp/dbget-bin/www_bget?C00777+C15493" name="cpd:C00777 cpd:C15493" type="compound">
+          <graphics bgcolor="#FFFFFF" fgcolor="#000000" height="8" name="C00777..." type="compound" width="8" x="628" y="120"/>
+     </entry>
+     <entry id="11" link="https://www.kegg.jp/dbget-bin/www_bget?C05981" name="cpd:C05981" type="compound">
+          <graphics bgcolor="#FFFFFF" fgcolor="#000000" height="8" name="C05981" type="compound" width="8" x="422" y="613"/>
+     </entry>
+     <entry id="10" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:7709" name="hsa:7709" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="ZBTB17, MIZ-1, ZNF151, ZNF60, pHZ-67" type="gene" width="46" x="760" y="438"/>
+     </entry>
+     <entry id="9" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:3655+hsa:3673+hsa:3674+hsa:3675+hsa:3685" name="hsa:3655 hsa:3673 hsa:3674 hsa:3675 hsa:3685" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="ITGA6, CD49f, ITGA6B, VLA-6..." type="gene" width="46" x="223" y="604"/>
+     </entry>
+     <entry id="8" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:3688" name="hsa:3688" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="ITGB1, CD29, FNRB, GPIIA, MDF2, MSK12, VLA-BETA, VLAB" type="gene" width="46" x="223" y="621"/>
+     </entry>
+     <entry id="7" link="https://www.kegg.jp/dbget-bin/www_bget?hsa04510" name="path:hsa04510" type="map">
+          <graphics bgcolor="#FFFFFF" fgcolor="#000000" height="34" name="Focal adhesion" type="map" width="102" x="308" y="663"/>
+     </entry>
+     <entry id="6" link="https://www.kegg.jp/dbget-bin/www_bget?hsa04512" name="path:hsa04512" type="map">
+          <graphics bgcolor="#FFFFFF" fgcolor="#000000" height="34" name="ECM-receptor interaction" type="map" width="102" x="146" y="573"/>
+     </entry>
+     <entry id="5" link="https://www.kegg.jp/dbget-bin/www_bget?hsa04210" name="path:hsa04210" type="map">
+          <graphics bgcolor="#FFFFFF" fgcolor="#000000" height="34" name="Apoptosis" type="map" width="102" x="544" y="321"/>
+     </entry>
+     <entry id="4" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:595" name="hsa:595" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="CCND1, BCL1, D11S287E, PRAD1, U21B31" type="gene" width="46" x="847" y="321"/>
+     </entry>
+     <entry id="3" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:1017" name="hsa:1017" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="CDK2, CDKN2, p33(CDK2)" type="gene" width="46" x="908" y="360"/>
+     </entry>
+     <entry id="2" link="https://www.kegg.jp/dbget-bin/www_bget?hsa:898+hsa:9134" name="hsa:898 hsa:9134" type="gene">
+          <graphics bgcolor="#BFFFBF" fgcolor="#000000" height="17" name="CCNE1, CCNE, pCCNE1..." type="gene" width="46" x="908" y="377"/>
+     </entry>
+     <entry id="1" link="https://www.kegg.jp/dbget-bin/www_bget?hsa04115" name="path:hsa04115" type="map">
+          <graphics bgcolor="#FFFFFF" fgcolor="#000000" height="34" name="p53 signaling pathway" type="map" width="102" x="626" y="176"/>
+     </entry>
+     <relation entry1="49" entry2="55" type="PPrel">
+          <subtype name="missing interaction" value="-/-"/>
+     </relation>
+     <relation entry1="49" entry2="54" type="PPrel">
+          <subtype name="missing interaction" value="-/-"/>
+     </relation>
+     <relation entry1="49" entry2="53" type="PPrel">
+          <subtype name="missing interaction" value="-/-"/>
+     </relation>
+     <relation entry1="49" entry2="52" type="PPrel">
+          <subtype name="missing interaction" value="-/-"/>
+     </relation>
+     <relation entry1="49" entry2="51" type="PPrel">
+          <subtype name="missing interaction" value="-/-"/>
+     </relation>
+     <relation entry1="49" entry2="50" type="PPrel">
+          <subtype name="missing interaction" value="-/-"/>
+     </relation>
+     <relation entry1="45" entry2="4" type="PPrel">
+          <subtype name="binding/association" value="---"/>
+     </relation>
+     <relation entry1="44" entry2="13" type="PPrel">
+          <subtype name="inhibition" value="--|"/>
+     </relation>
+     <relation entry1="42" entry2="34" type="GErel">
+          <subtype name="expression" value="--&gt;"/>
+     </relation>
+     <relation entry1="42" entry2="35" type="GErel">
+          <subtype name="expression" value="--&gt;"/>
+     </relation>
+     <relation entry1="42" entry2="39" type="GErel">
+          <subtype name="expression" value="--&gt;"/>
+     </relation>
+     <relation entry1="42" entry2="38" type="GErel">
+          <subtype name="expression" value="--&gt;"/>
+     </relation>
+     <relation entry1="42" entry2="31" type="GErel">
+          <subtype name="expression" value="--&gt;"/>
+     </relation>
+     <relation entry1="42" entry2="33" type="GErel">
+          <subtype name="expression" value="--&gt;"/>
+     </relation>
+     <relation entry1="41" entry2="43" type="PPrel">
+          <subtype name="binding/association" value="---"/>
+     </relation>
+     <relation entry1="40" entry2="43" type="PPrel">
+          <subtype name="dissociation" value="-+-"/>
+     </relation>
+     <relation entry1="37" entry2="42" type="PPrel">
+          <subtype name="dissociation" value="-+-"/>
+     </relation>
+     <relation entry1="36" entry2="37" type="PPrel">
+          <subtype name="activation" value="--&gt;"/>
+          <subtype name="phosphorylation" value="+p"/>
+     </relation>
+     <relation entry1="32" entry2="47" type="PPrel">
+          <subtype name="inhibition" value="--|"/>
+     </relation>
+     <relation entry1="27" entry2="8" type="PPrel">
+          <subtype name="binding/association" value="---"/>
+     </relation>
+     <relation entry1="26" entry2="18" type="PPrel">
+          <subtype name="missing interaction" value="-/-"/>
+     </relation>
+     <relation entry1="24" entry2="23" type="PPrel">
+          <subtype name="activation" value="--&gt;"/>
+     </relation>
+     <relation entry1="23" entry2="11" type="PPrel">
+          <subtype name="state change" value="..."/>
+     </relation>
+     <relation entry1="22" entry2="11" type="PCrel">
+          <subtype name="missing interaction" value="-/-"/>
+     </relation>
+     <relation entry1="21" entry2="17" type="PPrel">
+          <subtype name="binding/association" value="---"/>
+     </relation>
+     <relation entry1="21" entry2="10" type="PPrel">
+          <subtype name="binding/association" value="---"/>
+     </relation>
+     <relation entry1="21" entry2="4" type="PPrel">
+          <subtype name="binding/association" value="---"/>
+     </relation>
+     <relation entry1="20" entry2="21" type="PPrel">
+          <subtype name="binding/association" value="---"/>
+     </relation>
+     <relation entry1="19" entry2="18" type="PPrel">
+          <subtype name="missing interaction" value="-/-"/>
+     </relation>
+     <relation entry1="18" entry2="48" type="PPrel">
+          <subtype name="missing interaction" value="-/-"/>
+     </relation>
+     <relation entry1="17" entry2="44" type="PPrel">
+          <subtype name="activation" value="--&gt;"/>
+     </relation>
+     <relation entry1="16" entry2="36" type="PPrel">
+          <subtype name="activation" value="--&gt;"/>
+          <subtype name="phosphorylation" value="+p"/>
+     </relation>
+     <relation entry1="14" entry2="15" type="PPrel">
+          <subtype name="binding/association" value="---"/>
+     </relation>
+     <relation entry1="13" entry2="2" type="PPrel">
+          <subtype name="binding/association" value="---"/>
+     </relation>
+     <relation entry1="12" entry2="14" type="PPrel">
+          <subtype name="binding/association" value="---"/>
+     </relation>
+     <relation entry1="11" entry2="16" type="PPrel">
+          <subtype name="state change" value="..."/>
+     </relation>
+     <relation entry1="10" entry2="45" type="GErel">
+          <subtype name="expression" value="--&gt;"/>
+     </relation>
+     <relation entry1="9" entry2="24" type="PPrel">
+          <subtype name="binding/association" value="---"/>
+     </relation>
+     <relation entry1="8" entry2="9" type="PPrel">
+          <subtype name="binding/association" value="---"/>
+     </relation>
+     <relation entry1="4" entry2="41" type="PPrel">
+          <subtype name="binding/association" value="---"/>
+     </relation>
+     <relation entry1="3" entry2="43" type="PPrel">
+          <subtype name="binding/association" value="---"/>
+     </relation>
+     <relation entry1="2" entry2="3" type="PPrel">
+          <subtype name="binding/association" value="---"/>
+     </relation>
+</pathway>
