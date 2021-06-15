@@ -1,0 +1,269 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.cyloyalpoint</groupId>
+	<artifactId>cyLoyalPoint</artifactId>
+	<version>1.0</version>
+	<name>cyLoyalPoint</name>
+	<description>cyLoyalPoint</description>
+
+	<properties>
+		<cytoscape.api.version>3.3.0</cytoscape.api.version>
+		<cytoscape.opencl.version>3.5.0</cytoscape.opencl.version>
+		<maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
+		<maven-bundle-plugin.version>4.2.1</maven-bundle-plugin.version>
+		<maven-enforcer-plugin>1.2</maven-enforcer-plugin>
+		<osgi.api.version>4.2.0</osgi.api.version>
+	</properties>
+
+	<packaging>bundle</packaging>
+
+	<build>
+		<plugins>
+			<!-- The maven-compiler-plugin configures the Java compiler Maven uses 
+				to build the project. -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+
+			<!-- The maven-bundle-plugin creates the metadata that's necessary for 
+				an OSGi bundle. You can customize the OSGi options in the "instructions" 
+				section below. -->
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<version>${maven-bundle-plugin.version}</version>
+				<extensions>true</extensions>
+				<configuration>
+					<manifestLocation>META-INF</manifestLocation>
+					<instructions>
+						<Bundle-SymbolicName>cyloyalpoint</Bundle-SymbolicName>
+						<Bundle-Version>${project.version}</Bundle-Version>
+
+						<!-- This tells the bundle plugin which packages should not be exported. -->
+						<Private-Package>com.cyloyalpoint.internal.*</Private-Package>
+
+						<Bundle-Activator>com.cyloyalpoint.internal.CyActivator</Bundle-Activator>
+						
+						<!--
+			              embed compile/runtime dependencies using path that matches the copied dependency folder
+			            -->
+			            <!-- <Embed-Dependency>*;scope=compile|runtime;inline=false</Embed-Dependency> -->
+<!-- 			            <Embed-Directory>target/dependency</Embed-Directory> -->
+<!-- 			            <Embed-StripGroup>true</Embed-StripGroup> -->
+						<Include-Resource>
+						  {maven-resources}, {maven-dependencies}
+						</Include-Resource>
+					</instructions>
+				</configuration>
+			</plugin>
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-enforcer-plugin</artifactId> 
+				<version>${maven-enforcer-plugin}</version> <executions> <execution> <id>enforce-banned-dependencies</id> 
+				<goals> <goal>enforce</goal> </goals> <configuration> <rules> <bannedDependencies> 
+				<searchTransitive>true</searchTransitive> <excludes> <exclude>javassist:javassist</exclude>org.javassist 
+				is the new one <exclude>commons-logging</exclude> <exclude>aspectj:aspectj*</exclude> 
+				org.aspectj is the new one <exclude>hsqldb:hsqldb</exclude> org.hsqldb is 
+				the new one <exclude>log4j:log4j</exclude> <exclude>org.springframework:2.*</exclude> 
+				<exclude>org.springframework:3.*</exclude> <exclude>javax.xml.bind:*</exclude> 
+				<exclude>net.sf.saxon:*</exclude> <exclude>com.sun.xml.bind:*</exclude> <exclude>org.apache.commons:com.springsource.org.apache.commons.logging</exclude> 
+				</excludes> </bannedDependencies> <requireMavenVersion> <version>${maven.version.range}</version> 
+				</requireMavenVersion> <requireJavaVersion> <version>${java.version}</version> 
+				</requireJavaVersion> </rules> <fail>true</fail> </configuration> </execution> 
+				</executions> </plugin> -->
+				
+			<!-- <plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.8</version>
+				<executions>
+					<execution>
+						<phase>install</phase>
+						<configuration>
+							<target>
+								<copy
+									file="${project.build.directory}/${project.build.finalName}.jar"
+									todir="/Users/trankien/CytoscapeConfiguration/3/apps/installed" />
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin> -->
+
+<!--  			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>3.3.0</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<mainClass>com.cyloyalpoint.internal.CyActivator</mainClass>
+						</manifest>
+					</archive>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin> -->
+
+<!-- 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<mainClass>com.cyloyalpoint.internal.CyActivator</mainClass>
+							<classpathPrefix>dependency-jars/</classpathPrefix>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.5.1</version>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>
+								${project.build.directory}/dependency-jars/
+							</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin> -->
+		</plugins>
+	</build>
+
+	<!-- These are repositories Maven uses to download Cytoscape API JARs we 
+		use in our app. -->
+	<repositories>
+		<repository>
+			<id>cytoscape_snapshots</id>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<name>Cytoscape Snapshots</name>
+			<url>http://code.cytoscape.org/nexus/content/repositories/snapshots/</url>
+		</repository>
+		<repository>
+			<id>cytoscape_releases</id>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<name>Cytoscape Releases</name>
+			<url>http://code.cytoscape.org/nexus/content/repositories/releases/</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.cytoscape</groupId>
+			<artifactId>application-api</artifactId>
+			<version>${cytoscape.api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.cytoscape</groupId>
+			<artifactId>core-task-api</artifactId>
+			<version>${cytoscape.api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.cytoscape</groupId>
+			<artifactId>swing-application-api</artifactId>
+			<version>${cytoscape.api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.cytoscape</groupId>
+			<artifactId>swing-util-api</artifactId>
+			<version>${cytoscape.api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.cytoscape</groupId>
+			<artifactId>model-api</artifactId>
+			<version>${cytoscape.api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.cytoscape</groupId>
+			<artifactId>layout-api</artifactId>
+			<version>${cytoscape.api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.cytoscape</groupId>
+			<artifactId>service-api</artifactId>
+			<version>${cytoscape.api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.cytoscape</groupId>
+			<artifactId>viewmodel-api</artifactId>
+			<version>${cytoscape.api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.cytoscape</groupId>
+			<artifactId>vizmap-api</artifactId>
+			<version>${cytoscape.api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.cytoscape</groupId>
+			<artifactId>presentation-api</artifactId>
+			<version>${cytoscape.api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.cytoscape</groupId>
+			<artifactId>work-api</artifactId>
+			<version>${cytoscape.api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.cytoscape</groupId>
+			<artifactId>opencl-cycl</artifactId>
+			<version>${cytoscape.opencl.version}</version>
+		</dependency>
+		<!-- OSGi core API -->
+		<dependency>
+			<groupId>org.osgi</groupId>
+			<artifactId>org.osgi.core</artifactId>
+			<version>${osgi.api.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.ops4j.pax.logging</groupId>
+			<artifactId>pax-logging-api</artifactId>
+			<version>[1.5.2,2)</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+</project>
